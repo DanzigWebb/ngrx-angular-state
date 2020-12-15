@@ -6,5 +6,5 @@ export const initialState: ReadonlyArray<IFileData> = []
 
 export const fsReducer = createReducer(
   initialState,
-  on(retrievedFilesList, (state, { file }) => [...file])
+  on(retrievedFilesList, (state, { files }) => [...files])
 );

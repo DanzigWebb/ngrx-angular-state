@@ -9,8 +9,11 @@ import { FileWrapperComponent } from './file-wrapper/file-wrapper.component';
     FileItemComponent,
     FileWrapperComponent
   ],
-  imports: [
-    CommonModule,
+  exports:      [
+    FileWrapperComponent
+  ],
+  imports:      [
+    CommonModule
   ]
 })
 export class FsModule { }

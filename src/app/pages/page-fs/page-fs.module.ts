@@ -3,6 +3,9 @@ import { CommonModule } from '@angular/common';
 
 import { PageFsRoutingModule } from './page-fs-routing.module';
 import { PageFsComponent } from './page-fs.component';
+import { StoreModule } from '@ngrx/store';
+import { fsReducer } from '@app/state/fs.reducer';
+import { FsModule } from '@app/components/fs/fs.module';
 
 
 @NgModule({
@@ -11,7 +14,9 @@ import { PageFsComponent } from './page-fs.component';
   ],
   imports: [
     CommonModule,
-    PageFsRoutingModule
+    PageFsRoutingModule,
+    StoreModule.forRoot({files: fsReducer}),
+    FsModule
   ]
 })
 export class PageFsModule { }

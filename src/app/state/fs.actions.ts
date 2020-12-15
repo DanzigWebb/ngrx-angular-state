@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { IFileData } from '@app/core/models/fs.interface';
 
 export const getFiles = createAction(
   '[Files List] Get Files',
@@ -12,5 +13,5 @@ export const deleteFile = createAction(
 
 export const retrievedFilesList = createAction(
   '[Files List/API] Retrieve Files Success',
-  props<{ file }>()
+  props<{ files: IFileData[] }>()
 );

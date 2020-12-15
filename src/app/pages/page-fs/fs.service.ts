@@ -9,26 +9,18 @@ import { AppConfig } from '@app/core/config/app-config';
 })
 export class FsService {
 
-  private get host() {
-    return this._config.host;
-  }
-
-  private get homePath() {
-    return this._config.homePath;
-  }
-
   constructor(
-    private _config: AppConfig,
-    private _http: HttpClient
+    private config: AppConfig,
+    private http: HttpClient
   ) {
   }
 
   public getDirByPath(path: string): Observable<IFileResponseData> {
-    const apiUrl = `${this.host}files`;
-    return this._http.post<IFileResponseData>(apiUrl, path);
+    const apiUrl = `${this.config.host}files`;
+    return this.http.post<IFileResponseData>(apiUrl, {path});
   }
 
   public getHomeDir(): Observable<IFileResponseData> {
-    return this.getDirByPath(this.homePath);
+    return this.getDirByPath(this.config.homePath);
   }
 }

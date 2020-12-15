@@ -20,7 +20,6 @@ import { PageFsModule } from '@app/pages/page-fs/page-fs.module';
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    StoreModule.forRoot({}, {}),
 
     //  Pages
     PageFsModule
