@@ -10,7 +10,7 @@ import { FileWrapperComponent } from './file-wrapper/file-wrapper.component';
     FileWrapperComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ]
 })
 export class FsModule { }

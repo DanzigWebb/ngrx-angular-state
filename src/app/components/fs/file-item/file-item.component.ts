@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { IFileData } from '@app/core/models/fs.interface';
 
 @Component({
   selector: 'app-file-item',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./file-item.component.scss']
 })
 export class FileItemComponent implements OnInit {
+
+  @Input() file: IFileData;
 
   constructor() { }
 
