@@ -4,8 +4,10 @@
 
     <ng-container *ngIf="files$ | async as files">
       <fs-file-item
-        *ngFor="let file of files"
-        [file]="file">
+        *ngFor="let file of files.list"
+        [file]="file"
+        (click)="openDir(file.name)"
+      >
       </fs-file-item>
     </ng-container>
 
