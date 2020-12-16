@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FsService } from '@app/pages/page-fs/fs.service';
 import { select, Store } from '@ngrx/store';
-import { selectFiles } from '@app/state/fs.selectors';
-import { retrievedFilesList } from '@app/state/fs.actions';
+import { selectFiles } from '@app/state/fs/fs.selectors';
+import { retrievedFilesList } from '@app/state/fs/fs.actions';
 
 @Component({
   selector:    'app-page-fs',
@@ -26,5 +26,4 @@ export class PageFsComponent implements OnInit {
         this.store.dispatch(retrievedFilesList({files: data.list}))
       ));
   }
-
 }

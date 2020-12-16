@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { IFileData } from '../core/models/fs.interface';
+import { IFileData } from '@app/core/models/fs.interface';
 import { retrievedFilesList } from './fs.actions';
 
 export const initialState: ReadonlyArray<IFileData> = []
