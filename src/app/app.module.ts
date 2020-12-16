@@ -8,6 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageFsModule } from '@app/pages/page-fs/page-fs.module';
+import { TemplateModule } from '@app/shared/template/template.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { PageFsModule } from '@app/pages/page-fs/page-fs.module';
     BrowserAnimationsModule,
 
     //  Pages
-    PageFsModule
+    PageFsModule,
+    TemplateModule
   ],
 
   providers: [],

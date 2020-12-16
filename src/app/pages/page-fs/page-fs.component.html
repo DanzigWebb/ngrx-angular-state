@@ -1,11 +1,13 @@
 
-<fs-file-wrapper>
+<div class="container">
+  <fs-file-wrapper>
 
-  <ng-container *ngIf="files$ | async as files">
-    <fs-file-item
-      *ngFor="let file of files"
-      [file]="file">
-    </fs-file-item>
-  </ng-container>
+    <ng-container *ngIf="files$ | async as files">
+      <fs-file-item
+        *ngFor="let file of files"
+        [file]="file">
+      </fs-file-item>
+    </ng-container>
 
-</fs-file-wrapper>
+  </fs-file-wrapper>
+</div>
