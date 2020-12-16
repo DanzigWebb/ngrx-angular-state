@@ -1,10 +1,13 @@
 import { createReducer, on } from '@ngrx/store';
-import { IFileData } from '@app/core/models/fs.interface';
+import { IFileResponseData } from '@app/core/models/fs.interface';
 import { retrievedFilesList } from './fs.actions';
 
-export const initialState: ReadonlyArray<IFileData> = []
+export const initialState: IFileResponseData = {
+  list: [],
+  path: ''
+}
 
 export const fsReducer = createReducer(
   initialState,
-  on(retrievedFilesList, (state, { files }) => [...files])
+  on(retrievedFilesList, (state, { data }) => ({...data}))
 );

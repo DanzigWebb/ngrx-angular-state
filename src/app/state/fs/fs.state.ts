@@ -1,5 +1,5 @@
-import { IFileData } from '@app/core/models/fs.interface';
+import { IFileResponseData } from '@app/core/models/fs.interface';
 
 export interface FsState {
-  files: ReadonlyArray<IFileData>;
+  files: IFileResponseData;
 }
