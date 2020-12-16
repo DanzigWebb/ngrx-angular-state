@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { IFileData } from '@app/core/models/fs.interface';
 
 @Component({
-  selector: 'app-file-item',
+  selector: 'fs-file-item',
   templateUrl: './file-item.component.html',
   styleUrls: ['./file-item.component.scss']
 })

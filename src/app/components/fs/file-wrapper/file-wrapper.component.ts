@@ -1,14 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IFileData } from '@app/core/models/fs.interface';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-file-wrapper',
+  selector: 'fs-file-wrapper',
   templateUrl: './file-wrapper.component.html',
   styleUrls: ['./file-wrapper.component.scss']
 })
 export class FileWrapperComponent implements OnInit {
-
-  @Input() files: IFileData[];
 
   constructor() { }
 
