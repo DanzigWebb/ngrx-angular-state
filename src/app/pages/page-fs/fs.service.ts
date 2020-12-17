@@ -12,6 +12,8 @@ import { tap } from 'rxjs/operators';
 })
 export class FsService {
 
+  currentData: IFileResponseData;
+
   constructor(
     private config: AppConfig,
     private http: HttpClient,
@@ -22,11 +24,23 @@ export class FsService {
   public getDirByPath(path: string): Observable<IFileResponseData> {
     const apiUrl = `${this.config.host}files`;
     return this.http.post<IFileResponseData>(apiUrl, {path}).pipe(
-      tap(data => this.store.dispatch(retrievedFilesList({data})))
-    )
+      tap(data => {
+        this.currentData = data;
+        this.store.dispatch(retrievedFilesList({data}));
+      })
+    );
   }
 
-  public getHomeDir(): Observable<IFileResponseData> {
-    return this.getDirByPath(this.config.homePath)
+  public getHomeDir(): void {
+    this.getDirByPath(this.config.homePath).subscribe()
+  }
+
+  public back(): void {
+    const getDirPath = this.currentData.path
+      .split('/')
+      .slice(0, -1)
+      .join('/');
+
+    this.getDirByPath(getDirPath).subscribe();
   }
 }

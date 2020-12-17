@@ -25,11 +25,15 @@ export class PageFsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.fsService.getHomeDir().subscribe();
+    this.fsService.getHomeDir();
   }
 
-  openDir(fileName: string): void {
+  enter(fileName: string): void {
     const dirPath = this.currentPath + '/' + fileName;
     this.fsService.getDirByPath(dirPath).subscribe();
+  }
+
+  goBack(): void {
+    this.fsService.back();
   }
 }
