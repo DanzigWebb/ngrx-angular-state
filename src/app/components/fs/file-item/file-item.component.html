@@ -1,5 +1,9 @@
-<mat-list-item>
-  <mat-icon mat-list-icon>folder</mat-icon>
-  <div mat-line> {{file.name}} </div>
-  <div mat-line> {{file.lastModified | date}} </div>
+<mat-list-item class="fs-item">
+  <mat-icon mat-list-icon class="fs-item__folder">folder</mat-icon>
+  <div mat-line>
+    <span class="fs-item__name">{{file.name}}</span>
+  </div>
+  <div mat-line>
+    <span class="fs-item__date">{{file.lastModified | date}}</span>
+  </div>
 </mat-list-item>
