@@ -7,14 +7,14 @@
 
     <mat-form-field>
       <mat-label>Searching...</mat-label>
-      <input matInput #searchField type="text" autocomplete="off">
+      <input matInput [formControl]="searchFieldCtrl" type="text" autocomplete="off">
     </mat-form-field>
   </div>
   <fs-file-wrapper>
 
     <ng-container *ngIf="files$ | async as files">
       <fs-file-item
-        *ngFor="let file of (files.list | fsFilter:searchField.value)"
+        *ngFor="let file of (files.list | fsFilter:(filter$ | async))"
         [file]="file"
         (click)="enter(file.name)"
       >

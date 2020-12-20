@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { IFileResponseData } from '@app/core/models/fs.interface';
 import { AppConfig } from '@app/core/config/app-config';
 import { Store } from '@ngrx/store';
-import { retrievedFilesList } from '@app/state/fs/fs.actions';
+import { resetFilterStr, retrievedFilesList, setFilterStr } from '@app/state/fs/fs.actions';
 import { tap } from 'rxjs/operators';
 
 @Injectable({
@@ -26,13 +26,14 @@ export class FsService {
     return this.http.post<IFileResponseData>(apiUrl, {path}).pipe(
       tap(data => {
         this.currentData = data;
+        this.resetFilterStr();
         this.store.dispatch(retrievedFilesList({data}));
       })
     );
   }
 
   public getHomeDir(): void {
-    this.getDirByPath(this.config.homePath).subscribe()
+    this.getDirByPath(this.config.homePath).subscribe();
   }
 
   public back(): void {
@@ -42,5 +43,13 @@ export class FsService {
       .join('/');
 
     this.getDirByPath(getDirPath).subscribe();
+  }
+
+  public updateFilterStr(searchField: string): void {
+    this.store.dispatch(setFilterStr({searchField}));
+  }
+
+  public resetFilterStr(): void {
+    this.store.dispatch(resetFilterStr());
   }
 }

@@ -7,12 +7,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [],
   imports:      [
     CommonModule,
+    ReactiveFormsModule,
     MatListModule,
     MatIconModule,
     MatToolbarModule,
@@ -24,6 +26,7 @@ import { MatInputModule } from '@angular/material/input';
 
   exports: [
     MatListModule,
+    ReactiveFormsModule,
     MatIconModule,
     MatToolbarModule,
     MatButtonModule,
