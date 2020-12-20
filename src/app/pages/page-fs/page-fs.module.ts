@@ -7,6 +7,7 @@ import { StoreModule } from '@ngrx/store';
 import { FsModule } from '@app/components/fs/fs.module';
 import { fsReducer } from '@app/state/fs/fs.reducer';
 import { SharedModule } from '@app/shared/shared/shared.module';
+import { FsFilterModule } from '@app/shared/pipes/fs-filter/fs-filter.module';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { SharedModule } from '@app/shared/shared/shared.module';
     PageFsRoutingModule,
     StoreModule.forRoot({files: fsReducer}),
     FsModule,
-    SharedModule
+    SharedModule,
+    FsFilterModule
   ]
 })
 export class PageFsModule { }
