@@ -8,11 +8,13 @@ import { FsModule } from '@app/components/fs/fs.module';
 import { fsFilterStrReducer, fsReducer } from '@app/state/fs/fs.reducer';
 import { SharedModule } from '@app/shared/shared/shared.module';
 import { FsFilterModule } from '@app/shared/pipes/fs-filter/fs-filter.module';
+import { PageFsFilterComponent } from './page-fs-filter/page-fs-filter.component';
 
 
 @NgModule({
   declarations: [
-    PageFsComponent
+    PageFsComponent,
+    PageFsFilterComponent
   ],
   imports:      [
     CommonModule,

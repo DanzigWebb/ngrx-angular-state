@@ -1,25 +1,22 @@
-
 <div class="container">
   <div class="fs-header">
     <button mat-icon-button matTooltip="Back" (click)="goBack()">
       <mat-icon>keyboard_backspace</mat-icon>
     </button>
-
-    <mat-form-field>
-      <mat-label>Searching...</mat-label>
-      <input matInput [formControl]="searchFieldCtrl" type="text" autocomplete="off">
-    </mat-form-field>
+    <fs-filter></fs-filter>
   </div>
+
   <fs-file-wrapper>
-
-    <ng-container *ngIf="files$ | async as files">
+    <ng-container *ngIf="files | fsFilter:(filter$ | async) as filtered">
       <fs-file-item
-        *ngFor="let file of (files.list | fsFilter:(filter$ | async))"
+        *ngFor="let file of filtered"
         [file]="file"
-        (click)="enter(file.name)"
-      >
+        (click)="enter(file.name)">
       </fs-file-item>
-    </ng-container>
 
+      <div *ngIf="filtered.length === 0">
+        <h3>Files is not found</h3>
+      </div>
+    </ng-container>
   </fs-file-wrapper>
 </div>
