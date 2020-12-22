@@ -16,7 +16,8 @@ import { PageFsFilterComponent } from './page-fs-filter/page-fs-filter.component
     PageFsComponent,
     PageFsFilterComponent
   ],
-  imports:      [
+
+  imports: [
     CommonModule,
     PageFsRoutingModule,
     StoreModule.forRoot({

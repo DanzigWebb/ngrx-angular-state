@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FsService } from '@app/pages/page-fs/fs.service';
+import { tap } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 import { select, Store } from '@ngrx/store';
 import { selectFiles, selectFilterStr } from '@app/state/fs/fs.selectors';
-import { tap } from 'rxjs/operators';
 import { IFileData } from '@app/core/models/fs.interface';
-import { Subscription } from 'rxjs';
 import { AppPathService } from '@app/shared/service/app-path.service';
 
 @Component({
@@ -34,17 +34,17 @@ export class PageFsComponent implements OnInit {
   }
 
   private awaitFilesFromStore(): void {
-    const store$ = this.store.pipe(select(selectFiles),
+    const files$ = this.store.pipe(select(selectFiles),
       tap(({path, list}) => {
         this.currentPath = path;
         this.files = list;
       })).subscribe();
-    this.sub.add(store$);
+    this.sub.add(files$);
   }
 
   public enter(fileName: string): void {
     const dirPath = this.path.resolve(this.currentPath, fileName);
-    this.fsService.getDirByPath(dirPath).subscribe();
+    this.getFiles(dirPath);
   }
 
   public goBack(): void {
@@ -53,6 +53,8 @@ export class PageFsComponent implements OnInit {
   }
 
   private getFiles(path: string): void {
-    this.fsService.getDirByPath(path).subscribe();
+    this.fsService
+      .getDirByPath(path)
+      .subscribe();
   }
 }

@@ -13,8 +13,8 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 })
 export class PageFsFilterComponent implements OnInit, OnDestroy {
 
-  filter$ = this.store.pipe(select(selectFilterStr));
-  searchFieldCtrl = new FormControl();
+  public filter$ = this.store.pipe(select(selectFilterStr));
+  public searchFieldCtrl = new FormControl();
 
   private readonly sub: Subscription;
 
