@@ -22,8 +22,7 @@ export class FsService {
   }
 
   public getDirByPath(path: string): Observable<IFileResponseData> {
-    const apiUrl = `${this.config.host}files`;
-    return this.http.post<IFileResponseData>(apiUrl, {path}).pipe(
+    return this.http.post<IFileResponseData>(this.config.FILES_URL, {path}).pipe(
       tap(data => {
         this.currentData = data;
         this.resetFilterStr();
