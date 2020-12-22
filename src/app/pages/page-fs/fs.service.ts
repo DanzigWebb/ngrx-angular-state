@@ -37,9 +37,9 @@ export class FsService {
 
   public back(): void {
     const getDirPath = this.currentData.path
-      .split('/')
+      .split(this.config.SEPARATOR)
       .slice(0, -1)
-      .join('/');
+      .join(this.config.SEPARATOR);
 
     this.getDirByPath(getDirPath).subscribe();
   }

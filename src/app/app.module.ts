@@ -1,14 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { StoreModule } from '@ngrx/store';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PageFsModule } from '@app/pages/page-fs/page-fs.module';
 import { TemplateModule } from '@app/shared/template/template.module';
+import { AppConfig } from '@app/core/config/app-config';
+
+export function resourceProviderFactory(provider: AppConfig) {
+  return () => new Promise(resolve => {
+    provider.getConfig().subscribe(resolve);
+  });
+}
 
 @NgModule({
   declarations: [
@@ -27,7 +33,14 @@ import { TemplateModule } from '@app/shared/template/template.module';
     TemplateModule
   ],
 
-  providers: [],
+  providers: [
+    {
+      provide:    APP_INITIALIZER,
+      useFactory: resourceProviderFactory,
+      deps:       [AppConfig],
+      multi:      true
+    }
+  ],
 
   bootstrap: [AppComponent]
 })
