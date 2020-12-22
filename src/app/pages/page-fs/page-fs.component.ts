@@ -5,6 +5,7 @@ import { selectFiles, selectFilterStr } from '@app/state/fs/fs.selectors';
 import { tap } from 'rxjs/operators';
 import { IFileData } from '@app/core/models/fs.interface';
 import { Subscription } from 'rxjs';
+import { AppPathService } from '@app/shared/service/app-path.service';
 
 @Component({
   selector:    'app-page-fs',
@@ -21,17 +22,18 @@ export class PageFsComponent implements OnInit {
 
   constructor(
     private fsService: FsService,
-    private store: Store
+    private store: Store,
+    private path: AppPathService
   ) {
     this.sub = new Subscription();
   }
 
   ngOnInit(): void {
-    this.awaitFiles();
+    this.awaitFilesFromStore();
     this.fsService.getHomeDir();
   }
 
-  private awaitFiles(): void {
+  private awaitFilesFromStore(): void {
     const store$ = this.store.pipe(select(selectFiles),
       tap(({path, list}) => {
         this.currentPath = path;
@@ -41,11 +43,16 @@ export class PageFsComponent implements OnInit {
   }
 
   public enter(fileName: string): void {
-    const dirPath = this.currentPath + '/' + fileName;
+    const dirPath = this.path.resolve(this.currentPath, fileName);
     this.fsService.getDirByPath(dirPath).subscribe();
   }
 
   public goBack(): void {
-    this.fsService.back();
+    const path = this.path.dirName(this.currentPath);
+    this.getFiles(path);
+  }
+
+  private getFiles(path: string): void {
+    this.fsService.getDirByPath(path).subscribe();
   }
 }

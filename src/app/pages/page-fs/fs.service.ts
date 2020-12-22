@@ -35,15 +35,6 @@ export class FsService {
     this.getDirByPath(this.config.homePath).subscribe();
   }
 
-  public back(): void {
-    const getDirPath = this.currentData.path
-      .split(this.config.SEPARATOR)
-      .slice(0, -1)
-      .join(this.config.SEPARATOR);
-
-    this.getDirByPath(getDirPath).subscribe();
-  }
-
   public updateFilterStr(searchField: string): void {
     this.store.dispatch(setFilterStr({searchField}));
   }
