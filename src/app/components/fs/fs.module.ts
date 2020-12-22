@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FileItemComponent } from './file-item/file-item.component';
 import { FileWrapperComponent } from './file-wrapper/file-wrapper.component';
-import { SharedModule } from '@app/shared/shared/shared.module';
+import { SharedModule } from '@app/shared/shared.module';
 
 
 @NgModule({
