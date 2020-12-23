@@ -1,9 +1,20 @@
 <mat-list-item class="fs-item">
   <mat-icon mat-list-icon class="fs-item__folder">folder</mat-icon>
+
   <div mat-line>
     <span class="fs-item__name">{{file.name}}</span>
   </div>
   <div mat-line>
     <span class="fs-item__date">{{file.lastModified | date}}</span>
   </div>
+
+  <button mat-icon-button *ngIf="file.type !== 'folder'" [matMenuTriggerFor]="menu" (click)="prevent($event)">
+    <mat-icon>more_vert</mat-icon>
+  </button>
+
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="onDelete.emit(file)">
+      <span><mat-icon color="warn">delete</mat-icon>Ударить</span>
+    </button>
+  </mat-menu>
 </mat-list-item>
