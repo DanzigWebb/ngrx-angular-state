@@ -5,7 +5,8 @@ import { IFileResponseData } from '@app/core/models/fs.interface';
 import { AppConfig } from '@app/core/config/app-config';
 import { Store } from '@ngrx/store';
 import { resetFilterStr, retrievedFilesList, setFilterStr } from '@app/state/fs/fs.actions';
-import { tap } from 'rxjs/operators';
+import { finalize, tap } from 'rxjs/operators';
+import { AppLoaderService } from '@app/shared/service/app-loader.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,12 +18,15 @@ export class FsService {
   constructor(
     private config: AppConfig,
     private http: HttpClient,
-    private store: Store
+    private store: Store,
+    private loader: AppLoaderService
   ) {
   }
 
   public getDirByPath(path: string): Observable<IFileResponseData> {
+    this.loader.show();
     return this.http.post<IFileResponseData>(this.config.FILES_URL, {path}).pipe(
+      finalize(() => this.loader.hide()),
       tap(data => {
         this.currentData = data;
         this.resetFilterStr();

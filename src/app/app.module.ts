@@ -10,6 +10,7 @@ import { PageFsModule } from '@app/pages/page-fs/page-fs.module';
 import { TemplateModule } from '@app/shared/template/template.module';
 import { AppConfig } from '@app/core/config/app-config';
 import { MatIconRegistry } from '@angular/material/icon';
+import { LoaderModule } from '@app/shared/components/loader/loader.module';
 
 export function resourceProviderFactory(provider: AppConfig) {
   return () => new Promise(resolve => {
@@ -31,7 +32,8 @@ export function resourceProviderFactory(provider: AppConfig) {
 
     //  Pages
     PageFsModule,
-    TemplateModule
+    TemplateModule,
+    LoaderModule
   ],
 
   providers: [

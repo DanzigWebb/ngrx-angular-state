@@ -1,3 +1,5 @@
 <fs-template>
-  <router-outlet></router-outlet>
+  <app-loader [isLoading]="isLoading">
+    <router-outlet></router-outlet>
+  </app-loader>
 </fs-template>
