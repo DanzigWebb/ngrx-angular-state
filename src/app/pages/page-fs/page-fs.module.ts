@@ -9,6 +9,7 @@ import { fsFilterStrReducer, fsReducer } from '@app/state/fs/fs.reducer';
 import { SharedModule } from '@app/shared/shared.module';
 import { FsFilterModule } from '@app/shared/pipes/fs-filter/fs-filter.module';
 import { PageFsFilterComponent } from './page-fs-filter/page-fs-filter.component';
+import { ChartsPolarModule } from '@app/components/charts/charts-polar/charts-polar.module';
 
 
 @NgModule({
@@ -21,12 +22,13 @@ import { PageFsFilterComponent } from './page-fs-filter/page-fs-filter.component
     CommonModule,
     PageFsRoutingModule,
     StoreModule.forRoot({
-      files:       fsReducer,
+      files: fsReducer,
       searchField: fsFilterStrReducer
     }),
     FsModule,
     SharedModule,
-    FsFilterModule
+    FsFilterModule,
+    ChartsPolarModule
   ]
 })
 export class PageFsModule {

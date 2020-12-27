@@ -6,17 +6,35 @@
     <fs-filter></fs-filter>
   </div>
 
-  <fs-file-wrapper>
-    <ng-container *ngIf="files | fsFilter:(filter$ | async) as filtered">
-      <fs-file-item
-        *ngFor="let file of filtered"
-        [file]="file"
-        (click)="enter(file.name)">
-      </fs-file-item>
+  <div class="fs-files">
 
-      <div *ngIf="filtered.length === 0">
-        <h3>Files is not found</h3>
+    <div class="fs-files__list">
+      <fs-file-wrapper>
+        <ng-container *ngIf="files | fsFilter:(filter$ | async) as filtered">
+          <fs-file-item
+            *ngFor="let file of filtered"
+            [file]="file"
+            (click)="enter(file.name)">
+          </fs-file-item>
+
+          <div *ngIf="filtered.length === 0">
+            <h3>Files is not found</h3>
+          </div>
+        </ng-container>
+      </fs-file-wrapper>
+    </div>
+
+    <div class="fs-files__chart">
+      <div class="chart__wrapper">
+        <app-charts-polar
+          class="chart"
+          [labels]="labels"
+          [data]="data">
+        </app-charts-polar>
       </div>
-    </ng-container>
-  </fs-file-wrapper>
+
+    </div>
+
+  </div>
+
 </div>
