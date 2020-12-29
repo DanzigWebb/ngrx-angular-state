@@ -11,6 +11,7 @@ import { TemplateModule } from '@app/shared/template/template.module';
 import { AppConfig } from '@app/core/config/app-config';
 import { MatIconRegistry } from '@angular/material/icon';
 import { LoaderModule } from '@app/shared/components/loader/loader.module';
+import { NotifyModule } from '@app/shared/components/notify/notify.module';
 
 export function resourceProviderFactory(provider: AppConfig) {
   return () => new Promise(resolve => {
@@ -33,22 +34,25 @@ export function resourceProviderFactory(provider: AppConfig) {
     //  Pages
     PageFsModule,
     TemplateModule,
-    LoaderModule
+    LoaderModule,
+
+    // Modules
+    NotifyModule
   ],
 
   providers: [
     {
-      provide:    APP_INITIALIZER,
+      provide: APP_INITIALIZER,
       useFactory: resourceProviderFactory,
-      deps:       [AppConfig],
-      multi:      true
+      deps: [AppConfig],
+      multi: true
     }
   ],
 
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(matIconRegistry: MatIconRegistry, domSanitizer: DomSanitizer){
+  constructor(matIconRegistry: MatIconRegistry, domSanitizer: DomSanitizer) {
     matIconRegistry.addSvgIconSet(
       domSanitizer.bypassSecurityTrustResourceUrl('./assets/mdi.svg')
     );
