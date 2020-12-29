@@ -6,6 +6,7 @@ import { select, Store } from '@ngrx/store';
 import { selectFiles, selectFilterStr } from '@app/state/fs/fs.selectors';
 import { IFileData } from '@app/core/models/fs.interface';
 import { AppPathService } from '@app/shared/service/app-path.service';
+import { NotifyService } from '@app/shared/components/notify/notify.service';
 
 @Component({
   selector: 'app-page-fs',
@@ -23,7 +24,8 @@ export class PageFsComponent implements OnInit {
   constructor(
     private fsService: FsService,
     private store: Store,
-    private path: AppPathService
+    private path: AppPathService,
+    private notify: NotifyService
   ) {
     this.sub = new Subscription();
   }
@@ -31,6 +33,8 @@ export class PageFsComponent implements OnInit {
   ngOnInit(): void {
     this.awaitFilesFromStore();
     this.fsService.getHomeDir();
+
+    this.deleteFile(null)
   }
 
   private awaitFilesFromStore(): void {
@@ -74,6 +78,10 @@ export class PageFsComponent implements OnInit {
 
   public goHome(): void {
     this.fsService.getHomeDir();
+  }
+
+  public deleteFile(file: IFileData) {
+    this.notify.confirm()
   }
 
   private getFiles(path: string): void {

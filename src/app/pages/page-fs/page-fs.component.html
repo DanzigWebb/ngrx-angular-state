@@ -23,7 +23,8 @@
           <fs-file-item
             *ngFor="let file of filtered"
             [file]="file"
-            (click)="enter(file.name)">
+            (click)="enter(file.name)"
+            (onDelete)="deleteFile($event)">
           </fs-file-item>
 
           <div *ngIf="filtered.length === 0">

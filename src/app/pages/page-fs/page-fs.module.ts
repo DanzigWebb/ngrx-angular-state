@@ -10,6 +10,8 @@ import { SharedModule } from '@app/shared/shared.module';
 import { FsFilterModule } from '@app/shared/pipes/fs-filter/fs-filter.module';
 import { PageFsFilterComponent } from './page-fs-filter/page-fs-filter.component';
 import { ChartsPolarModule } from '@app/components/charts/charts-polar/charts-polar.module';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NotifyModule } from '@app/shared/components/notify/notify.module';
 
 
 @NgModule({
@@ -25,10 +27,11 @@ import { ChartsPolarModule } from '@app/components/charts/charts-polar/charts-po
       files: fsReducer,
       searchField: fsFilterStrReducer
     }),
-    FsModule,
     SharedModule,
+    FsModule,
     FsFilterModule,
-    ChartsPolarModule
+    ChartsPolarModule,
+    NotifyModule
   ]
 })
 export class PageFsModule {

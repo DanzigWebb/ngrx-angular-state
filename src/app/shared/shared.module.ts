@@ -8,23 +8,18 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { NotifyModule } from '@app/shared/components/notify/notify.module';
 
 
 @NgModule({
   declarations: [],
-  imports:      [
-    CommonModule,
-    ReactiveFormsModule,
-    MatListModule,
-    MatIconModule,
-    MatToolbarModule,
-    MatButtonModule,
-    MatTooltipModule,
-    MatFormFieldModule,
-    MatInputModule
+  imports: [
+    CommonModule
   ],
 
   exports: [
+    MatDialogModule,
     MatListModule,
     ReactiveFormsModule,
     MatIconModule,
@@ -32,7 +27,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     MatTooltipModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
   ]
 })
 export class SharedModule {
