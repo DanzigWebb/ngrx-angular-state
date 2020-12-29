@@ -4,6 +4,12 @@
   padding: 1rem;
 }
 
+.fs-header {
+  &__filter {
+    padding: 0 2rem;
+  }
+}
+
 .fs-files {
   display: grid;
   grid-template-columns: 1fr 1fr;

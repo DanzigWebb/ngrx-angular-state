@@ -3,7 +3,16 @@
     <button mat-icon-button matTooltip="Back" (click)="goBack()">
       <mat-icon>keyboard_backspace</mat-icon>
     </button>
-    <fs-filter></fs-filter>
+
+    <button mat-icon-button matTooltip="Home" (click)="goHome()">
+      <mat-icon>home</mat-icon>
+    </button>
+
+    <fs-filter class="fs-header__filter"></fs-filter>
+
+    <button mat-icon-button matTooltip="Update" (click)="update()">
+      <mat-icon>cached</mat-icon>
+    </button>
   </div>
 
   <div class="fs-files">

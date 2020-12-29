@@ -54,7 +54,7 @@ export class PageFsComponent implements OnInit {
     });
 
     this.labels = Object.keys(data);
-    this.data = Object.keys(data).map(item => data[item])
+    this.data = Object.keys(data).map(item => data[item]);
   }
 
 
@@ -66,6 +66,14 @@ export class PageFsComponent implements OnInit {
   public goBack(): void {
     const path = this.path.dirName(this.currentPath);
     this.getFiles(path);
+  }
+
+  public update(): void {
+    this.fsService.updateCurrentDir();
+  }
+
+  public goHome(): void {
+    this.fsService.getHomeDir();
   }
 
   private getFiles(path: string): void {
