@@ -35,6 +35,10 @@ export class FsService {
     );
   }
 
+  public updateCurrentDir() {
+    this.getDirByPath(this.currentData.path).subscribe();
+  }
+
   public getHomeDir(): void {
     this.getDirByPath(this.config.homePath).subscribe();
   }
