@@ -33,8 +33,6 @@ export class PageFsComponent implements OnInit {
   ngOnInit(): void {
     this.awaitFilesFromStore();
     this.fsService.getHomeDir();
-
-    this.deleteFile(null)
   }
 
   private awaitFilesFromStore(): void {
@@ -81,7 +79,9 @@ export class PageFsComponent implements OnInit {
   }
 
   public deleteFile(file: IFileData) {
-    this.notify.confirm()
+    this.notify.confirm().afterClosed().subscribe(
+      isSubmit => isSubmit && this.fsService.deleteFile(file.name)
+    );
   }
 
   private getFiles(path: string): void {

@@ -43,6 +43,12 @@ export class FsService {
     this.getDirByPath(this.config.homePath).subscribe();
   }
 
+  public deleteFile(fileName: string): void {
+    const list = this.currentData.list.filter(file => file.name !== fileName);
+    const data = {...this.currentData, list};
+    this.store.dispatch(retrievedFilesList({data}));
+  }
+
   public updateFilterStr(searchField: string): void {
     this.store.dispatch(setFilterStr({searchField}));
   }
