@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FsService } from '@app/pages/page-fs/fs.service';
 import { tap } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
@@ -13,7 +13,7 @@ import { NotifyService } from '@app/shared/components/notify/notify.service';
   templateUrl: './page-fs.component.html',
   styleUrls: ['./page-fs.component.scss']
 })
-export class PageFsComponent implements OnInit {
+export class PageFsComponent implements OnInit, OnDestroy {
 
   public readonly filter$ = this.store.pipe(select(selectFilterStr));
   public currentPath: string;
@@ -88,5 +88,9 @@ export class PageFsComponent implements OnInit {
     this.fsService
       .getDirByPath(path)
       .subscribe();
+  }
+
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }
