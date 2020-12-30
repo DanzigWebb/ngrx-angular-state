@@ -45,8 +45,8 @@ export class FsService {
 
   public deleteFile(fileName: string): void {
     const list = this.currentData.list.filter(file => file.name !== fileName);
-    const data = {...this.currentData, list};
-    this.store.dispatch(retrievedFilesList({data}));
+    this.currentData = {...this.currentData, list};
+    this.store.dispatch(retrievedFilesList({data: this.currentData}));
   }
 
   public updateFilterStr(searchField: string): void {
